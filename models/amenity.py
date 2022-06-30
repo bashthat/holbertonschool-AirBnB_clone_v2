@@ -13,7 +13,7 @@ class Amenity(BaseModel):
     creates the tables of amenities
     """
     __tablename__ = "amenities"
-    name = Column(128), nullable = False
+    name = Column(String(128), nullable = False)
     #ideas
     #age = Column(Integer, default=1)
     #gender = Column(String(30), default='female')
