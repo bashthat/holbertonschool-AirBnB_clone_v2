@@ -50,9 +50,9 @@ def html_tags(n):
 def number_odd_or_even(n):
     """ if n is an even or odd number, display that which is true! """
     if n % 2 == 0:
-        plumb_even == "even"
+        plumb_even == even
     else:
-        plumb_even == "odd"
+        plumb_even == odd
     return render_template('6-number_odd_or_even.html', n=n)
 
 
