@@ -22,14 +22,14 @@ def message_2():
 
 @app.route("/c/<text>", strict_slashes=False)
 def space_case(text):
-    """ display C and the Value along with replacing the space_case@hand '_' = ' ' """
+    """ display C along with replacing the space_case@hand """
     return "C {}".format(text.replace("_", " "))
 
 
 @app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
-def py3_text(text = "is cool"):
-    """ holding true to the space case, while declaring the text "is cool" for <text>"""
+def py3_text(text="is cool"):
+    """ holding true to the space case, while declaring <text>"""
     return "Python {}".format(text.replace("_", " "))
 
 

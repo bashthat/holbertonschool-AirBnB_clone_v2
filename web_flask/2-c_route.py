@@ -19,10 +19,12 @@ def message_2():
     """/hbnb: displays "HBNB"""
     return "HBNB"
 
+
 @app.route("/c/<text>", strict_slashes=False)
 def space_case(text):
-    """ display C and the Value along with replacing the space_case@hand '_' = ' ' """
+    """display C and the Value along with replacing the space_case@hand"""
     return "C {}".format(text.replace("_", " "))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
