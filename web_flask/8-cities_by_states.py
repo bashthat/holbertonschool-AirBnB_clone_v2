@@ -4,21 +4,22 @@ import modules and start web_flask app
 """
 
 from flask import Flask, render_template
-imoort models
 from models import storage
 from models import *
+from models.state import State
 
 app = Flask(__name__)
 
 
-@app.route('/states_list', strict_slashes=False)
-def states_list():
+@app.route('/states', strict_slashes=False)
+@app.route('/states/<state_id>', strict_slashes=False)
+def states(state_id=none):
     """app route states_list, import storage.all, display html states in <h1> header """
-    states = sorted(list(storage.all("State").values()), key=lambda z: x.name)
-    return render_template('8-cities_by_states.html', states=states)
+    states = storage.all("State")
+    return render_template('9-states.html', states=states, state_id=state_id)
 
 @app.teardown_appcontext
-def halt(exc)
+def halt(exc):
     """ removing SQLAlchemy """
     storage.close()
 
