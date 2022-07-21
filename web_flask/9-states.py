@@ -4,9 +4,9 @@ import modules and start web_flask app
 """
 
 from flask import Flask, render_template
-imoort models
 from models import storage
 from models import *
+from models.state import State
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def states(state_id=none):
     return render_template('9-states.html', states=states, state_id=state_id)
 
 @app.teardown_appcontext
-def halt(exc)
+def halt(exc):
     """ removing SQLAlchemy """
     storage.close()
 
