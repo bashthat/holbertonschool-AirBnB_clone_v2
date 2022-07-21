@@ -3,10 +3,10 @@
 import modules and start web_flask app
 """
 
+from models import *
+from models import storage
 from flask import Flask, render_template
 imoort models
-from models import storage
-from models import *
 
 app = Flask(__name__)
 
@@ -16,6 +16,7 @@ def states_list():
     """app route states_list, import storage.all, display html states in <h1> header """
     states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
     return render_template('7-states_list.html', states=states)
+
 
 @app.teardown_appcontext
 def halt(exc):

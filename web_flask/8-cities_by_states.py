@@ -18,6 +18,7 @@ def states(state_id=none):
     states = storage.all("State")
     return render_template('9-states.html', states=states, state_id=state_id)
 
+
 @app.teardown_appcontext
 def halt(exc):
     """ removing SQLAlchemy """
