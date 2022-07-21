@@ -20,7 +20,7 @@ def message_2():
     return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def space_case():
+def space_case(text):
     """ display C and the Value along with replacing the space_case@hand '_' = ' ' """
     return "C {}".format(text.replace("_", " "))
 
