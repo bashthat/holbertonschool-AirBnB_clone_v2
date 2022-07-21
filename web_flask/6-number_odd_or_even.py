@@ -23,7 +23,7 @@ def message_2():
 
 @app.route("/c/<text>", strict_slashes=False)
 def space_case():
-    """ display C and the Value """
+    """display C and the Value"""
     return "C {}".format(text.replace("_", " "))
 
 
