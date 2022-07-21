@@ -6,7 +6,7 @@ import modules and start web_flask app
 from models import *
 from models import storage
 from flask import Flask, render_template
-imoort models
+import models
 
 app = Flask(__name__)
 
