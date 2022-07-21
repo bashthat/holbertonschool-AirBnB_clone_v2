@@ -25,8 +25,8 @@ def space_case():
     return "C {}".format(text.replace("_", " "))
 
 @app.route("/python", strict_slashes=False)
-@app.route("/python(<text>)", strict_slashes=False)
-def py3_text(text = "is cool"):
+@app.route("/python/<text>", strict_slashes=False)
+def py3_text(text="is cool"):
     """ holding true to the space case, while declaring the text "is cool" for <text>"""
     return "Python {}".format(text.replace("_", " "))
 
