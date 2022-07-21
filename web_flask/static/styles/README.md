@@ -1,1 +1,1 @@
-styling the abnb_clone
+the format of the website
