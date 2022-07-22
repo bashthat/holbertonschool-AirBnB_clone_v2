@@ -18,7 +18,7 @@ def states_list():
     return render_template('7-states_list.html', states=states)
 
 
-@app.teardown_appcontext
+@ app.teardown_appcontext
 def teardown_db(exception):
     """ removing SQLAlchemy """
     storage.close()
