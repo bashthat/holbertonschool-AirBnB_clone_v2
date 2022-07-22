@@ -4,6 +4,7 @@ import modules and start web_flask app
 """
 import os
 from models import storage
+from models import storage.all(...)
 from models.state import State
 from flask import Flask, render_template
 
