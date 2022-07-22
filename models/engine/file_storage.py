@@ -62,15 +62,4 @@ class FileStorage:
                     del o["__class__"]
                     self.new(eval(name)(**o))
         except FileNotFoundError:
-            pass
-
-    def delete(self, obj=None):
-        """Delete an object"""
-        try:
-            del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
-        except (AttributeError, KeyError):
-            pass
-
-    def close(self):
-        """closing the program/process"""
-        self.reload()
+            pass  
