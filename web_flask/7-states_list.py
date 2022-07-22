@@ -2,11 +2,11 @@
 """
 import modules and start web_flask app
 """
-
+import os
+import models
 from models import *
 from models import storage
 from flask import Flask, render_template
-import models
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def halt(exc):
+def teardown_db(exception):
     """ removing SQLAlchemy """
     storage.close()
 
