@@ -21,7 +21,7 @@ class State(BaseModel, Base):
         def cities(self):
             """info for fileStorage"""
             city_list = []
-            for el in models.storage.all(City).values():
-                if el.state_id == self.id:
-                    city_list.append(el)
+            for city in list(models.storage.all(City).values()):
+                if city.state_id == self.id:
+                    city_list.append(city)
             return city_list
