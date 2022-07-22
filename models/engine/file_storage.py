@@ -12,7 +12,6 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-
     def all(self, cls=None):
         """
         Return objects of a dictionary.
@@ -39,7 +38,7 @@ class FileStorage:
 
     def reload(self):
         """Deserializing the translation catastrophy!"""
-        
+
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State
@@ -48,7 +47,6 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
 
-        
         classes = {"BaseModel": BaseModel,
                    "User": User,
                    "State": State,
