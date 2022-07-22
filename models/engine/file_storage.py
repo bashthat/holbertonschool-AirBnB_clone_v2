@@ -1,13 +1,15 @@
 #!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""Defines the FileStorage class."""
 import json
 import os
 import datetime
 
-
 class FileStorage:
-    """This class manages storage of hbnb models in JSON format"""
-    __file_path = 'file.json'
+    """
+    class manages imported hbnb models in a JSON format
+    """
+
+    __file_path = "file.json"
     __objects = {}
 
 
@@ -30,36 +32,49 @@ class FileStorage:
                    "Place": Place,
                    "Review": Review}
 
+
     def all(self, cls=None):
-        """Returns a dictionary of models currently in storage"""
+        """
+        Return objects of a dictionary.
+        """
         if cls is not None:
-            return {key: self.__objects[key]
-                    for key in self.__objects
-                    if self.__objects[key].__class__ == cls}
-        return FileStorage.__objects
+            if type(cls) == str:
+                cls = eval(cls)
+            cls_dict = {}
+            for k, v in self.__objects.items():
+                if type(v) == cls:
+                    cls_dict[k] = v
+            return cls_dict
+        return self.__objects
 
     def new(self, obj):
-          temp[key] = val.to_dict()
-          json.dump(temp, f)
+        """new list init"""
+        self.__objects["{}.{}".format(type(obj).__name__, obj.id)] = obj
+
+    def save(self):
+        """JSON Serializes the file"""
+        odict = {o: self.__objects[o].to_dict() for o in self.__objects.keys()}
+        with open(self.__file_path, "w", encoding="utf-8") as f:
+            json.dump(odict, f)
 
     def reload(self):
-        """Loads storage dictionary from file"""
-        from models.base_model import BaseModel
-    def reload(self):
-            with open(FileStorage.__file_path, 'r') as f:
-                temp = json.load(f)
-                for key, val in temp.items():
-                       self.all()[key] = classes[val['__class__']](**val)
+        """Deserializing the translation"""
+        try:
+            with open(self.__file_path, "r", encoding="utf-8") as f:
+                for o in json.load(f).values():
+                    name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(name)(**o))
+        except FileNotFoundError:
             pass
 
     def delete(self, obj=None):
-        """Deletes obj from __objects if it's inside"""
-        if obj in self.__objects.values():
-            key = obj.__class__.__name__ + "." + obj.id
-            self.__objects.pop(key, None)
-        elif obj is None:
-            return
+        """Delete an object"""
+        try:
+            del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
+        except (AttributeError, KeyError):
+            pass
 
     def close(self):
-        """call reload() method for deserializing the JSON file to objects"""
+        """closing the program/process"""
         self.reload()
