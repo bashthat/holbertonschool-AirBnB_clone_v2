@@ -9,9 +9,9 @@ class FileStorage:
     """
     class manages imported hbnb models in a JSON format
     """
-
     __file_path = "file.json"
     __objects = {}
+
 
     def all(self, cls=None):
         """
@@ -38,11 +38,8 @@ class FileStorage:
             json.dump(odict, f)
 
     def reload(self):
-        """
-        Deserializing the translation
-        Returns dict of classes
-        """
-
+        """Deserializing the translation catastrophy!"""
+        
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State
@@ -51,6 +48,7 @@ class FileStorage:
         from models.place import Place
         from models.review import Review
 
+        
         classes = {"BaseModel": BaseModel,
                    "User": User,
                    "State": State,
