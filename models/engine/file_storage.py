@@ -4,6 +4,7 @@ import json
 import os
 import datetime
 
+
 class FileStorage:
     """
     class manages imported hbnb models in a JSON format
@@ -12,37 +13,16 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-
-    def classes(self):
-        """ Returns dict of classes """
-
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-
-        return {"BaseModel": BaseModel,
-                   "User": User,
-                   "State": State,
-                   "City": City,
-                   "Amenity": Amenity,
-                   "Place": Place,
-                   "Review": Review}
-
-
     def all(self, cls=None):
         """
         Return objects of a dictionary.
         """
         if cls is not None:
-            if type(cls) == str:
+            if isinstance(cls, str):
                 cls = eval(cls)
             cls_dict = {}
             for k, v in self.__objects.items():
-                if type(v) == cls:
+                if isinstance(v, cls):
                     cls_dict[k] = v
             return cls_dict
         return self.__objects
@@ -58,8 +38,28 @@ class FileStorage:
             json.dump(odict, f)
 
     def reload(self):
-        """Deserializing the translation"""
+        """
+        Deserializing the translation
+        Returns dict of classes
+        """
+
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
+        classes = {"BaseModel": BaseModel,
+                   "User": User,
+                   "State": State,
+                   "City": City,
+                   "Amenity": Amenity,
+                   "Place": Place,
+                   "Review": Review}
         try:
+            temp = {}
             with open(self.__file_path, "r", encoding="utf-8") as f:
                 for o in json.load(f).values():
                     name = o["__class__"]
